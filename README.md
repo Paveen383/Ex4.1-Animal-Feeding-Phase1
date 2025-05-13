@@ -64,10 +64,69 @@ Edit their speed values and test to see how it looks. Drag all three animals int
 ## REG NO : 212224220071
 
 ## PLAYER CONTROL :
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+public class playercontroller : MonoBehaviour
+{
+    public float horizontalInput;
+    public float speed = 10.0f;
+    public float xRange = 10f;
+    public GameObject projectilePrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+}
+```
+## MoveForward :
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveForward : MonoBehaviour
+{
+    public float speed=30.0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.forward*Time.deltaTime);
+    }
+}
+```
 ## OUTPUT :
-
+![alt text](need1.png)
+![alt text](need2.png)
 ## RESULT :
-
 Thus,Animal feeding game-Phase-1 using unity is developed successfully.
+
